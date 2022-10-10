@@ -1,0 +1,35 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
+  release:
+    types: [published, edited]
+  pull_request:
+    branches:
+      - 'main'
+
+env:
+  GOFLAGS: -mod=readonly
+
+jobs:
+  testlibinpibilan:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Go 1.18
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18.x
+
+      - name: Build package
+        run: go build -v .
+
+      - name: Unit Tests
+        run: go test ./...

@@ -3,20 +3,20 @@ name: tests
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
     tags:
       - 'v*'
   release:
     types: [published, edited]
   pull_request:
     branches:
-      - 'master'
+      - 'main'
 
 env:
   GOFLAGS: -mod=readonly
 
 jobs:
-  test…libinpibilan:
+  testlibinpibilan:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
